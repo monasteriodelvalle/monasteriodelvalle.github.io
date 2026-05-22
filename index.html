@@ -68,6 +68,24 @@
   .hero-contacts { display: flex; flex-direction: column; gap: 10px; }
   .hero-contact-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
   .hero-contact-item:hover { color: #5DCAA5; }
+  .cv-download-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 1.8rem;
+    background: transparent;
+    color: #ffffff;
+    border: 1.5px solid rgba(93,202,165,0.7);
+    padding: 10px 22px; border-radius: 8px;
+    text-decoration: none; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    width: fit-content;
+  }
+  .cv-download-btn:hover {
+    background: rgba(93,202,165,0.15);
+    border-color: #5DCAA5;
+    color: #5DCAA5;
+  }
+  .cv-download-btn svg { flex-shrink: 0; }
   .hero-contact-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-mid); flex-shrink: 0; }
 
   .hero-right { background: var(--white); display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; }
@@ -130,6 +148,32 @@
   .lang-level { font-size: 12px; color: var(--gray-light); }
   .lang-note { font-size: 12px; color: var(--teal); margin-top: 6px; }
 
+
+  /* ACCORDION */
+  .job-summary {
+    font-size: 13.5px; color: var(--gray); line-height: 1.7;
+    margin-bottom: 1rem; border-left: 3px solid var(--teal);
+    padding-left: 0.85rem;
+  }
+  .accordion-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: 1px solid var(--border);
+    border-radius: 6px; padding: 6px 14px;
+    font-size: 12px; font-weight: 500; color: var(--teal);
+    cursor: pointer; transition: background 0.2s, border-color 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .accordion-toggle:hover { background: var(--teal-light); border-color: #9FE1CB; }
+  .accordion-toggle svg { transition: transform 0.3s; flex-shrink: 0; }
+  .accordion-toggle.open svg { transform: rotate(180deg); }
+  .accordion-content {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s;
+    opacity: 0; margin-top: 0;
+  }
+  .accordion-content.open {
+    max-height: 800px; opacity: 1; margin-top: 1rem;
+  }
   footer { background: var(--dark); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 12px; letter-spacing: 0.04em; }
   .bg-white { background: var(--white); }
   .bg-alt { background: var(--bg); }
@@ -171,9 +215,20 @@
     </p>
     <div class="hero-contacts">
       <a href="tel:+34628190126" class="hero-contact-item"><span class="dot"></span>+34 628 19 01 26</a>
-      <a href="https://www.linkedin.com/in/alberto-monasterio/" target="_blank" class="hero-contact-item"><span class="dot"></span>linkedin.com/in/alberto-monasterio</a>
-      <span class="hero-contact-item"><span class="dot"></span>Madrid</span>
+      <a href="https://www.linkedin.com/in/alberto-monasterio/" target="_blank" class="hero-contact-item">
+        <span class="dot"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink:0;opacity:0.85;">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        <span data-i18n="contact.linkedin">LinkedIn</span>
+      </a>
     </div>
+    <a href="CV_Alberto_Monasterio.pdf" download class="cv-download-btn" data-i18n-href-es="CV_Alberto_Monasterio.pdf" data-i18n-href-en="CV_Alberto_Monasterio.pdf">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+      </svg>
+      <span data-i18n="hero.download">Descargar CV</span>
+    </a>
   </div>
 
   <div class="hero-right">
@@ -280,6 +335,7 @@
     </div>
     <div class="timeline">
 
+      <!-- JOB 1 -->
       <div class="timeline-item">
         <div class="timeline-dot filled"></div>
         <div class="job-card">
@@ -289,18 +345,28 @@
           </div>
           <div class="job-company">Worldline Global Services</div>
           <div class="job-location" data-i18n="job1.loc">Remoto</div>
-          <ul class="job-bullets">
-            <li data-i18n="job1.b1">Diseño y ejecución de pruebas funcionales, de regresión, smoke y UAT en entornos ágiles (Scrum/Kanban).</li>
-            <li data-i18n="job1.b2">Testing y validación de APIs REST y SOAP mediante Postman y SoapUI, garantizando la integridad de integraciones entre servicios.</li>
-            <li data-i18n="job1.b3">Análisis e interpretación de trazas de logs de aplicación para diagnóstico de defectos: correlación de eventos, identificación de excepciones, rastreo de flujos de petición/respuesta y detección de anomalías en entornos distribuidos.</li>
-            <li data-i18n="job1.b4">Validación y consulta de datos en bases de datos relacionales con DBeaver; gestión de conexiones y despliegues con MobaXterm y FileZilla.</li>
-            <li data-i18n="job1.b5">Liderazgo interino del equipo de QA: coordinación de tareas, asignación de prioridades y reporte de calidad al negocio.</li>
-            <li data-i18n="job1.b6">Mentoring y onboarding de becarios y nuevas incorporaciones en herramientas y metodologías de QA.</li>
-            <li data-i18n="job1.b7">Impulso de iniciativas de innovación: aplicación de fundamentos de IA al testing para optimizar cobertura y detección de defectos.</li>
-          </ul>
+          <p class="job-summary" data-i18n="job1.summary">
+            Responsable de la calidad del software en un entorno financiero internacional de alta exigencia. Diseño y ejecución de pruebas funcionales, de regresión, E2E y UAT sobre APIs REST y SOAP, con análisis avanzado de logs en sistemas distribuidos. Liderazgo interino del equipo de QA e impulso de iniciativas de automatización e IA aplicada al testing.
+          </p>
+          <button class="accordion-toggle" onclick="toggleAccordion(this)" data-i18n-open="job.hideDetail" data-i18n-closed="job.showDetail">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span data-i18n="job.showDetail">Ver detalle completo</span>
+          </button>
+          <div class="accordion-content">
+            <ul class="job-bullets">
+              <li data-i18n="job1.b1">Diseño y ejecución de pruebas funcionales, de regresión, smoke y UAT en entornos ágiles (Scrum/Kanban).</li>
+              <li data-i18n="job1.b2">Testing y validación de APIs REST y SOAP mediante Postman y SoapUI, garantizando la integridad de integraciones entre servicios.</li>
+              <li data-i18n="job1.b3">Análisis e interpretación de trazas de logs de aplicación para diagnóstico de defectos: correlación de eventos, identificación de excepciones, rastreo de flujos de petición/respuesta y detección de anomalías en entornos distribuidos.</li>
+              <li data-i18n="job1.b4">Validación y consulta de datos en bases de datos relacionales con DBeaver; gestión de conexiones y despliegues con MobaXterm y FileZilla.</li>
+              <li data-i18n="job1.b5">Liderazgo interino del equipo de QA: coordinación de tareas, asignación de prioridades y reporte de calidad al negocio.</li>
+              <li data-i18n="job1.b6">Mentoring y onboarding de becarios y nuevas incorporaciones en herramientas y metodologías de QA.</li>
+              <li data-i18n="job1.b7">Impulso de iniciativas de innovación: aplicación de fundamentos de IA al testing para optimizar cobertura y detección de defectos.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
+      <!-- JOB 2 -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="job-card">
@@ -310,16 +376,26 @@
           </div>
           <div class="job-company">Precoavi S.L.</div>
           <div class="job-location" data-i18n="job2.loc">Remoto</div>
-          <ul class="job-bullets">
-            <li data-i18n="job2.b1">Diseño y ejecución de casos de prueba funcionales para verificar el cumplimiento de requisitos del sistema.</li>
-            <li data-i18n="job2.b2">Participación en la definición y ejecución de pruebas de aceptación (UAT), asegurando que el producto satisfaga las necesidades del negocio.</li>
-            <li data-i18n="job2.b3">Implementación de ciclos de pruebas de regresión para garantizar la estabilidad ante nuevas actualizaciones.</li>
-            <li data-i18n="job2.b4">Detección, documentación, seguimiento y priorización de incidencias en Jira.</li>
-            <li data-i18n="job2.b5">Gestión de dependencias externas e identificación de riesgos de integración.</li>
-          </ul>
+          <p class="job-summary" data-i18n="job2.summary">
+            Primera etapa en el sector IT como Agile Tester en remoto, trabajando con metodologías ágiles en proyectos de software. Diseño y ejecución de pruebas funcionales, de regresión y UAT, con gestión completa del ciclo de vida de incidencias en Jira y control de dependencias e integración entre servicios.
+          </p>
+          <button class="accordion-toggle" onclick="toggleAccordion(this)" data-i18n-open="job.hideDetail" data-i18n-closed="job.showDetail">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span data-i18n="job.showDetail">Ver detalle completo</span>
+          </button>
+          <div class="accordion-content">
+            <ul class="job-bullets">
+              <li data-i18n="job2.b1">Diseño y ejecución de casos de prueba funcionales para verificar el cumplimiento de requisitos del sistema.</li>
+              <li data-i18n="job2.b2">Participación en la definición y ejecución de pruebas de aceptación (UAT), asegurando que el producto satisfaga las necesidades del negocio.</li>
+              <li data-i18n="job2.b3">Implementación de ciclos de pruebas de regresión para garantizar la estabilidad ante nuevas actualizaciones.</li>
+              <li data-i18n="job2.b4">Detección, documentación, seguimiento y priorización de incidencias en Jira.</li>
+              <li data-i18n="job2.b5">Gestión de dependencias externas e identificación de riesgos de integración.</li>
+            </ul>
+          </div>
         </div>
       </div>
 
+      <!-- JOB 3 -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="job-card">
@@ -329,12 +405,21 @@
           </div>
           <div class="job-company">Mapfre / Ocaso S.A.</div>
           <div class="job-location">Algeciras / Madrid</div>
-          <ul class="job-bullets">
-            <li data-i18n="job3.b1">Gestión total de oficina delegada de Mapfre: operativa diaria, coordinación con dirección y control de resultados.</li>
-            <li data-i18n="job3.b2">Coordinación de equipo comercial de 14 agentes: formación, contratación y seguimiento de resultados.</li>
-            <li data-i18n="job3.b3">Gestión de siniestros, emisión de pólizas, digitalización de documentación y atención al cliente.</li>
-            <li data-i18n="job3.b4">Reporte de KPIs y cumplimiento de objetivos de ventas (mínimo 6.500 €/mes).</li>
-          </ul>
+          <p class="job-summary" data-i18n="job3.summary">
+            Más de 10 años de trayectoria en el sector asegurador, gestionando una oficina delegada de Mapfre y coordinando un equipo comercial de 14 agentes en Ocaso. Etapa que forjó habilidades clave de liderazgo, gestión de equipos, orientación a resultados y comunicación con clientes.
+          </p>
+          <button class="accordion-toggle" onclick="toggleAccordion(this)" data-i18n-open="job.hideDetail" data-i18n-closed="job.showDetail">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span data-i18n="job.showDetail">Ver detalle completo</span>
+          </button>
+          <div class="accordion-content">
+            <ul class="job-bullets">
+              <li data-i18n="job3.b1">Gestión total de oficina delegada de Mapfre: operativa diaria, coordinación con dirección y control de resultados.</li>
+              <li data-i18n="job3.b2">Coordinación de equipo comercial de 14 agentes: formación, contratación y seguimiento de resultados.</li>
+              <li data-i18n="job3.b3">Gestión de siniestros, emisión de pólizas, digitalización de documentación y atención al cliente.</li>
+              <li data-i18n="job3.b4">Reporte de KPIs y cumplimiento de objetivos de ventas (mínimo 6.500 €/mes).</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -397,7 +482,7 @@
         </div>
         <div class="lang-card">
           <div class="lang-name" data-i18n="lang.en">Inglés</div>
-          <div class="lang-level" data-i18n="lang.enLevel">B1 — Nivel intermedio</div>
+          <div class="lang-level" data-i18n="lang.enLevel">B2 — Nivel intermedio</div>
           <div class="lang-note" data-i18n="lang.enNote">Capacidad para trabajar con documentación técnica en inglés. En mejora continua.</div>
         </div>
       </div>
@@ -430,7 +515,8 @@
 </div>
 
 <footer>
-  Alberto Monasterio del Valle · QA Engineer · Madrid
+  © 2026 Alberto Monasterio del Valle · QA Engineer · Madrid
+  <span style="display:block;margin-top:4px;font-size:11px;opacity:0.5;">Todos los derechos reservados · All rights reserved</span>
 </footer>
 
 <script>
@@ -496,11 +582,18 @@ const i18n = {
     "lang.es": "Español",
     "lang.esLevel": "Nivel nativo",
     "lang.en": "Inglés",
-    "lang.enLevel": "B1 — Nivel intermedio",
+    "lang.enLevel": "B2 — Nivel intermedio",
     "lang.enNote": "Capacidad para trabajar con documentación técnica en inglés. En mejora continua.",
     "contact.title": "¿Hablamos?",
     "contact.sub": "Abierto a nuevas oportunidades en QA Engineering. Disponible para trabajo remoto.",
-    "contact.email": "Enviar email"
+    "contact.email": "Enviar email",
+    "job.showDetail": "Ver detalle completo",
+    "job.hideDetail": "Ocultar detalle",
+    "job1.summary": "Responsable de la calidad del software en un entorno financiero internacional de alta exigencia. Diseño y ejecución de pruebas funcionales, de regresión, E2E y UAT sobre APIs REST y SOAP, con análisis avanzado de logs en sistemas distribuidos. Liderazgo interino del equipo de QA e impulso de iniciativas de automatización e IA aplicada al testing.",
+    "job2.summary": "Primera etapa en el sector IT como Agile Tester en remoto, trabajando con metodologías ágiles en proyectos de software. Diseño y ejecución de pruebas funcionales, de regresión y UAT, con gestión completa del ciclo de vida de incidencias en Jira y control de dependencias e integración entre servicios.",
+    "job3.summary": "Más de 10 años de trayectoria en el sector asegurador, gestionando una oficina delegada de Mapfre y coordinando un equipo comercial de 14 agentes en Ocaso. Etapa que forjó habilidades clave de liderazgo, gestión de equipos, orientación a resultados y comunicación con clientes.",
+    "contact.linkedin": "LinkedIn",
+    "hero.download": "Descargar CV"
   },
   en: {
     "nav.skills": "Skills",
@@ -563,11 +656,18 @@ const i18n = {
     "lang.es": "Spanish",
     "lang.esLevel": "Native",
     "lang.en": "English",
-    "lang.enLevel": "B1 — Intermediate",
+    "lang.enLevel": "B2 — Upper Intermediate",
     "lang.enNote": "Able to work with technical documentation in English. Continuously improving.",
     "contact.title": "Let's talk",
     "contact.sub": "Open to new QA Engineering opportunities. Available for remote work.",
-    "contact.email": "Send email"
+    "contact.email": "Send email",
+    "job.showDetail": "View full detail",
+    "job.hideDetail": "Hide detail",
+    "job1.summary": "Responsible for software quality in a demanding international financial environment. Design and execution of functional, regression, E2E and UAT tests on REST and SOAP APIs, with advanced log analysis in distributed systems. Interim QA team leadership and promotion of automation and AI-driven testing initiatives.",
+    "job2.summary": "First role in the IT sector as a remote Agile Tester, working with agile methodologies on software projects. Design and execution of functional, regression and UAT tests, with full incident lifecycle management in Jira and control of service dependencies and integrations.",
+    "job3.summary": "Over 10 years in the insurance sector, managing a Mapfre branch office and coordinating a commercial team of 14 agents at Ocaso. A period that built key skills in leadership, team management, results orientation and client communication.",
+    "contact.linkedin": "LinkedIn",
+    "hero.download": "Download CV"
   }
 };
 
@@ -583,6 +683,20 @@ function setLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
   });
+}
+
+function toggleAccordion(btn) {
+  const content = btn.nextElementSibling;
+  const span = btn.querySelector('span');
+  const isOpen = content.classList.contains('open');
+  content.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  const lang = document.documentElement.lang || 'es';
+  const openKey = btn.getAttribute('data-i18n-open');
+  const closedKey = btn.getAttribute('data-i18n-closed');
+  if (i18n[lang]) {
+    span.textContent = !isOpen ? (i18n[lang][openKey] || 'Ocultar detalle') : (i18n[lang][closedKey] || 'Ver detalle completo');
+  }
 }
 </script>
 </body>
