@@ -276,7 +276,7 @@
         <span data-i18n="contact.linkedin">LinkedIn</span>
       </a>
     </div>
-    <a href="https://monasteriodelvalle.github.io/CV_Alberto_Monasterio.pdf" download target="_blank" class="cv-download-btn" data-i18n-href-es="CV_Alberto_Monasterio.pdf" data-i18n-href-en="CV_Alberto_Monasterio.pdf">
+    <a href="https://monasteriodelvalle.github.io/CV_Alberto_Monasterio.pdf" target="_blank" class="cv-download-btn" onclick="downloadCV(event)">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
       </svg>
@@ -755,6 +755,28 @@ function toggleAccordion(btn) {
   if (i18n[lang]) {
     span.textContent = !isOpen ? (i18n[lang][openKey] || 'Ocultar detalle') : (i18n[lang][closedKey] || 'Ver detalle completo');
   }
+}
+
+function downloadCV(e) {
+  e.preventDefault();
+  const url = 'https://monasteriodelvalle.github.io/CV_Alberto_Monasterio.pdf';
+  const filename = 'CV_Alberto_Monasterio.pdf';
+  fetch(url)
+    .then(res => res.blob())
+    .then(blob => {
+      const blobUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(blobUrl);
+    })
+    .catch(() => {
+      // Fallback: open in new tab if fetch fails
+      window.open(url, '_blank');
+    });
 }
 </script>
 </body>
