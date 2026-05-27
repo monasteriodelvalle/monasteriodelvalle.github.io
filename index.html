@@ -169,7 +169,6 @@
   .lang-level { font-size: 12px; color: var(--gray-light); }
   .lang-note { font-size: 12px; color: var(--teal); margin-top: 6px; }
 
-
   /* ACCORDION */
   .job-summary {
     font-size: 13.5px; color: var(--gray); line-height: 1.7;
@@ -276,7 +275,7 @@
         <span data-i18n="contact.linkedin">LinkedIn</span>
       </a>
     </div>
-    <a href="CV_Alberto_Monasterio.pdf" target="_blank" rel="noopener noreferrer" onclick="downloadPDF(event)" class="cv-download-btn">
+    <a href="CV_Alberto_Monasterio.pdf" download class="cv-download-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
       </svg>
@@ -757,32 +756,6 @@ function toggleAccordion(btn) {
   }
 }
 
-}
-
-function downloadPDF(e) {
-  e.preventDefault();
-
-  var pdfUrl = 'CV_Alberto_Monasterio.pdf';
-  var isAndroid = /android/i.test(navigator.userAgent);
-
-  // Método 1: descarga directa con atributo download (desktop/Firefox/iOS)
-  try {
-    var a = document.createElement('a');
-    a.href = pdfUrl;
-    a.download = 'CV_Alberto_Monasterio.pdf';
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  } catch (err) {}
-
-  // Método 2: window.open como fallback para Android Chrome
-  // Chrome Android ignora a.click() programático; window.open() en handler
-  // síncrono de usuario SÍ se considera gesto de confianza.
-  if (isAndroid) {
-    window.open(pdfUrl, '_blank', 'noopener,noreferrer');
-  }
 }
 
 </script>
